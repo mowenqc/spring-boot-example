@@ -12,7 +12,7 @@ buildNumber.properties
 
 .gitignore
 .ignore
-.idea/
+/.idea/
 vcs.xml
 */.mvn/
 */mvnw
