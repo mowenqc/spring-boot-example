@@ -5,6 +5,9 @@ logging:
 mybatis:
   mapper-locations: classpath:/mapper/*.xml
 
+swagger:
+  enable: true
+
 spring:
   datasource:
     druid:

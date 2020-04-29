@@ -15,5 +15,11 @@
     <modules>
         <module>1-spring-boot-helloworld</module>
         <module>2-spring-boot-thymeleaf</module>
+        <module>3-spring-boot-log4j2</module>
+        <module>4-spring-boot-mybatis</module>
+        <module>5-spring-boot-filter</module>
+        <module>6-spring-boot-interceptor</module>
+        <module>7-spring-boot-listener</module>
+        <module>8-spring-boot-swagger</module>
     </modules>
 </project>
