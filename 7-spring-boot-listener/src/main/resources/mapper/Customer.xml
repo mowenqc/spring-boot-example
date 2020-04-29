@@ -1,0 +1,118 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mowen.filter.customer.dao.CustomerMapper">
+    <resultMap id="customer" type="com.mowen.filter.customer.domain.Customer">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="password" property="password"/>
+        <result column="ip" property="ip"/>
+        <result column="status" property="status"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+    <sql id="customerColumn">
+        `id`            ,`name`            ,`password`            ,`ip`            ,`status`            ,`create_time`            ,`update_time`    </sql>
+    <insert id="addCustomer" parameterType="com.mowen.filter.customer.domain.Customer" useGeneratedKeys="true"
+            keyProperty="id">
+        INSERT INTO customer (
+        <include refid="customerColumn"></include>
+        )
+        VALUES( #{id}
+        ,
+        #{name}
+        ,
+        #{password}
+        ,
+        #{ip}
+        ,
+        #{status}
+        ,
+        now()
+        ,
+        now()
+        )
+    </insert>
+    <delete id="deleteCustomer" parameterType="com.mowen.filter.customer.domain.Customer">
+        DELETE FROM customer
+        <where>
+            and id = #{id}
+        </where>
+    </delete>
+    <update id="updateCustomer" parameterType="com.mowen.filter.customer.domain.Customer">
+        UPDATE customer SET update_time = now()
+        ,name = #{name}
+        ,password = #{password}
+        ,ip = #{ip}
+        ,status = #{status}
+        <where>
+            and id = #{id}
+        </where>
+    </update>
+    <select id="findCustomer" parameterType="com.mowen.filter.customer.domain.Customer"
+            resultMap="customer">
+        select
+        <include refid="customerColumn"></include>
+        from customer
+        <where>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="password != null and password != ''">
+                and password = #{password}
+            </if>
+            <if test="ip != null and ip != ''">
+                and ip = #{ip}
+            </if>
+            <if test="status != null and status != ''">
+                and status = #{status}
+            </if>
+        </where>
+    </select>
+    <select id="listCustomer" parameterType="map" resultMap="customer">
+        select
+        <include refid="customerColumn"></include>
+        from customer
+        <where>
+            <if test="obj.name != null and obj.name != ''">
+                and name = #{obj.name}
+            </if>
+            <if test="obj.password != null and obj.password != ''">
+                and password = #{obj.password}
+            </if>
+            <if test="obj.ip != null and obj.ip != ''">
+                and ip = #{obj.ip}
+            </if>
+            <if test="obj.status != null and obj.status != ''">
+                and status = #{obj.status}
+            </if>
+        </where>
+        order by create_time desc
+        <if test="page != null">
+            limit #{page.offset}, #{page.limit}
+        </if>
+    </select>
+    <select id="countCustomer" parameterType="com.mowen.filter.customer.domain.Customer"
+            resultType="int">
+        select count(*)
+        from customer
+        <where>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="password != null and password != ''">
+                and password = #{password}
+            </if>
+            <if test="ip != null and ip != ''">
+                and ip = #{ip}
+            </if>
+            <if test="status != null and status != ''">
+                and status = #{status}
+            </if>
+        </where>
+    </select>
+    <select id="findCustomerByName" parameterType="string" resultMap="customer">
+        select * from customer where `name` = #{name}
+    </select>
+</mapper>
+
