@@ -9,8 +9,8 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.mowen</groupId>
-    <artifactId>spring-boot-helloworld</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <artifactId>1-spring-boot-helloworld</artifactId>
+    <version>1.0.1-SNAPSHOT</version>
     <name>1-spring-boot-helloworld</name>
     <description>Demo project for Spring Boot</description>
 
