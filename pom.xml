@@ -22,5 +22,6 @@
         <module>7-spring-boot-listener</module>
         <module>8-spring-boot-swagger</module>
         <module>9-spring-boot-redis</module>
+        <module>10-spring-boot-activemq</module>
     </modules>
 </project>

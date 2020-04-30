@@ -1,8 +1,8 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mowen.redis.customer.dao.CustomerMapper">
-    <resultMap id="customer" type="com.mowen.redis.customer.domain.Customer">
+<mapper namespace="com.mowen.activemq.customer.dao.CustomerMapper">
+    <resultMap id="customer" type="com.mowen.activemq.customer.domain.Customer">
         <id column="id" property="id"/>
         <result column="name" property="name"/>
         <result column="password" property="password"/>
@@ -13,7 +13,7 @@
     </resultMap>
     <sql id="customerColumn">
         `id`            ,`name`            ,`password`            ,`ip`            ,`status`            ,`create_time`            ,`update_time`    </sql>
-    <insert id="addCustomer" parameterType="com.mowen.redis.customer.domain.Customer" useGeneratedKeys="true"
+    <insert id="addCustomer" parameterType="com.mowen.activemq.customer.domain.Customer" useGeneratedKeys="true"
             keyProperty="id">
         INSERT INTO customer (
         <include refid="customerColumn"></include>
@@ -33,13 +33,13 @@
         now()
         )
     </insert>
-    <delete id="deleteCustomer" parameterType="com.mowen.redis.customer.domain.Customer">
+    <delete id="deleteCustomer" parameterType="com.mowen.activemq.customer.domain.Customer">
         DELETE FROM customer
         <where>
             and id = #{id}
         </where>
     </delete>
-    <update id="updateCustomer" parameterType="com.mowen.redis.customer.domain.Customer">
+    <update id="updateCustomer" parameterType="com.mowen.activemq.customer.domain.Customer">
         UPDATE customer SET update_time = now()
         ,name = #{name}
         ,password = #{password}
@@ -49,7 +49,7 @@
             and id = #{id}
         </where>
     </update>
-    <select id="findCustomer" parameterType="com.mowen.redis.customer.domain.Customer"
+    <select id="findCustomer" parameterType="com.mowen.activemq.customer.domain.Customer"
             resultMap="customer">
         select
         <include refid="customerColumn"></include>
@@ -92,7 +92,7 @@
             limit #{page.offset}, #{page.limit}
         </if>
     </select>
-    <select id="countCustomer" parameterType="com.mowen.redis.customer.domain.Customer"
+    <select id="countCustomer" parameterType="com.mowen.activemq.customer.domain.Customer"
             resultType="int">
         select count(*)
         from customer
