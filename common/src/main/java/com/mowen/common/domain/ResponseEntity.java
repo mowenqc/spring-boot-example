@@ -1,5 +1,7 @@
 package com.mowen.common.domain;
 
+import com.mowen.common.util.StringUtil;
+
 import java.io.Serializable;
 
 /****
@@ -10,15 +12,21 @@ import java.io.Serializable;
  *****/
 public class ResponseEntity implements Serializable {
 
+    /**
+     * 100失败
+     * 200成功
+     */
     private String code;
     private Object data;
-    private String msg;
     public ResponseEntity(){}
 
     public ResponseEntity(String code, Object data, String msg){
         this.code = code;
         this.data = data;
-        this.msg = msg;
+    }
+    public ResponseEntity(String code, Object data){
+        this.code = code;
+        this.data = data;
     }
 
     public String getCode() {
@@ -36,12 +44,8 @@ public class ResponseEntity implements Serializable {
     public void setData(Object data) {
         this.data = data;
     }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
+    @Override
+    public String toString() {
+        return StringUtil.toJson(this);
     }
 }

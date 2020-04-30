@@ -21,3 +21,6 @@
 /8-spring-boot-swagger/.mvn/
 /8-spring-boot-swagger/mvnw
 /8-spring-boot-swagger/mvnw.cmd
+/common/.mvn/
+/common/mvnw.cmd
+/common/mvnw
